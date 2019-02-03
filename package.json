@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "license": "BSD-3-Clause",
+  "scripts": {
+    "test": "pulp build -I test && jest"
+  },
+  "devDependencies": {
+    "jest": "^24.0.0"
+  }
+}
