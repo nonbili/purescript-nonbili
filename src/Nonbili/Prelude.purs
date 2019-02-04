@@ -21,7 +21,7 @@ module Nonbili.Prelude
   , sym
   ) where
 
-import Prelude hiding (when, unless)
+import Prelude hiding (when,unless)
 
 import CallByName.Applicative (when, unless)
 import Control.Alt ((<|>))
@@ -30,10 +30,10 @@ import Control.MonadPlus (guard)
 import Data.Array ((:), (..))
 import Data.Bifunctor (lmap, rmap)
 import Data.Const (Const(..))
-import Data.Either (Either(..), either, fromRight, hush)
+import Data.Either (Either(..), either, hush, note)
 import Data.Foldable (fold, foldl, foldr, for_, traverse_)
 import Data.Functor (mapFlipped)
-import Data.Maybe (Maybe(..), fromMaybe, fromJust, isJust, isNothing, maybe)
+import Data.Maybe (Maybe(..), fromMaybe, isJust, isNothing, maybe)
 import Data.Newtype (class Newtype, unwrap, wrap)
 import Data.Symbol (SProxy(..))
 import Data.Traversable (for, sequence, traverse)

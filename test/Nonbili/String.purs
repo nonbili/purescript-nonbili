@@ -1,14 +1,15 @@
 module Test.Nonbili.String where
 
 import Nonbili.Prelude
-import Test.QuickCheck (quickCheck)
 
+import Data.Either (fromRight)
 import Data.String as String
 import Data.String.Regex as Regex
 import Data.String.Regex.Flags as RegexFlags
 import Jest (test)
 import Nonbili.String (padStart)
 import Partial.Unsafe (unsafePartial)
+import Test.QuickCheck (quickCheck)
 
 spec :: Effect Unit
 spec =
