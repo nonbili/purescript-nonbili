@@ -12,6 +12,7 @@ import Nonbili.Prelude
 
 import Data.Argonaut.Core as A
 import Data.Argonaut.Decode (class DecodeJson)
+import Data.Argonaut.Encode (class EncodeJson)
 import Data.JSDate (JSDate)
 import Data.JSDate as JSDate
 import Effect.Unsafe (unsafePerformEffect)
@@ -23,6 +24,14 @@ derive instance ordDateTime :: Ord DateTime
 instance decodeJsonDateTime :: DecodeJson DateTime where
   decodeJson json =
     note "Invalid date" $ (A.toString json >>= read)
+
+instance encodeJsonDateTime :: EncodeJson DateTime where
+  encodeJson (DateTime date) =
+    if JSDate.isValid date
+    then
+      A.fromString $ unsafePerformEffect $ JSDate.toISOString date
+    else
+      A.jsonNull
 
 read :: String -> Maybe DateTime
 read str =
