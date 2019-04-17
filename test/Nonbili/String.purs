@@ -2,19 +2,18 @@ module Test.Nonbili.String where
 
 import Nonbili.Prelude
 
-import Data.Either (fromRight)
 import Data.String as String
 import Data.String.Regex as Regex
 import Data.String.Regex.Flags as RegexFlags
+import Data.String.Regex.Unsafe (unsafeRegex)
 import Jest (test)
 import Nonbili.String (padStart)
-import Partial.Unsafe (unsafePartial)
 import Test.QuickCheck (quickCheck)
 
 spec :: Effect Unit
 spec =
   test "padStart" $ do
-    let re = unsafePartial $ fromRight $ Regex.regex "^0+$" RegexFlags.noFlags
+    let re = unsafeRegex "^0+$" RegexFlags.noFlags
     quickCheck \n s -> do
       let
         lengthDiff = n - String.length s
