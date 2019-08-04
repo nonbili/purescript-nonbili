@@ -22,7 +22,7 @@
     "purescript-tuples": "^5.1.0",
     "purescript-either": "^4.1.1",
     "purescript-arrays": "^5.2.0",
-    "purescript-call-by-name": "^1.0.0",
+    "purescript-call-by-name": "^2.0.0",
     "purescript-const": "^4.1.0",
     "purescript-transformers": "^4.1.0",
     "purescript-strings": "^4.0.1",

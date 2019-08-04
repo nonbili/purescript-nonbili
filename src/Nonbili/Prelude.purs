@@ -1,6 +1,7 @@
 module Nonbili.Prelude
   ( module Prelude
   , module CallByName.Applicative
+  , module CallByName.Syntax
   , module Control.Alt
   , module Control.Monad.Except
   , module Control.MonadPlus
@@ -24,6 +25,7 @@ module Nonbili.Prelude
 import Prelude hiding (when,unless)
 
 import CallByName.Applicative (when, unless)
+import CallByName.Syntax ((\\))
 import Control.Alt ((<|>))
 import Control.Monad.Except (except, runExcept)
 import Control.MonadPlus (guard)
