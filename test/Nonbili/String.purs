@@ -8,7 +8,7 @@ import Data.String.Regex as Regex
 import Data.String.Regex.Flags as RegexFlags
 import Data.String.Regex.Unsafe (unsafeRegex)
 import Jest (expectToBeFalse, expectToBeTrue, expectToEqual, test)
-import Nonbili.String (padStart, search, startsWith)
+import Nonbili.String (padStart, search, startsWith, endsWith)
 import Test.QuickCheck (quickCheck)
 
 spec :: Effect Unit
@@ -38,3 +38,9 @@ spec = do
     expectToBeTrue $ startsWith (Pattern "") "PureScript"
     expectToBeTrue $ startsWith (Pattern "") ""
     expectToBeFalse $ startsWith (Pattern "Pure") "Regex"
+
+  test "endsWith" $ do
+    expectToBeTrue $ endsWith (Pattern "Script") "PureScript"
+    expectToBeTrue $ endsWith (Pattern "") "PureScript"
+    expectToBeTrue $ endsWith (Pattern "") ""
+    expectToBeFalse $ endsWith (Pattern "Pure") "Regex"

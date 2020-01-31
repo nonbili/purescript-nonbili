@@ -2,6 +2,7 @@ module Nonbili.String
   ( padStart
   , search
   , startsWith
+  , endsWith
   ) where
 
 import Nonbili.Prelude
@@ -27,3 +28,7 @@ search (Pattern term) options =
 startsWith :: Pattern -> String -> Boolean
 startsWith (Pattern p) str =
   String.take (String.length p) str == p
+
+endsWith :: Pattern -> String -> Boolean
+endsWith (Pattern p) str =
+  String.drop (String.length str - String.length p) str == p
