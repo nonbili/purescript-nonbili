@@ -40,7 +40,7 @@ import Data.Newtype (class Newtype, unwrap, wrap)
 import Data.Symbol (SProxy(..))
 import Data.Traversable (for, sequence, traverse)
 import Data.Tuple (Tuple(..), uncurry)
-import Debug.Trace (trace, traceM)
+import Debug.Trace (spy, trace, traceM)
 import Effect (Effect)
 import Effect.Class (liftEffect)
 
