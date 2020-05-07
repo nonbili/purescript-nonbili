@@ -27,7 +27,8 @@
     "purescript-transformers": "^4.1.0",
     "purescript-strings": "^4.0.1",
     "purescript-js-date": "^6.0.0",
-    "purescript-argonaut-codecs": "^6.0.2"
+    "purescript-argonaut-codecs": "^6.0.2",
+    "purescript-aff": "^5.1.2"
   },
   "devDependencies": {
     "purescript-quickcheck": "^6.1.0",

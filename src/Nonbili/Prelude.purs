@@ -18,6 +18,8 @@ module Nonbili.Prelude
   , module Data.Tuple
   , module Debug.Trace
   , module Effect
+  , module Effect.Aff
+  , module Effect.Aff.Class
   , module Effect.Class
   , sym
   ) where
@@ -42,6 +44,8 @@ import Data.Traversable (for, sequence, traverse)
 import Data.Tuple (Tuple(..), uncurry)
 import Debug.Trace (spy, trace, traceM)
 import Effect (Effect)
+import Effect.Aff (Aff)
+import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
 
 sym :: forall a. SProxy a
