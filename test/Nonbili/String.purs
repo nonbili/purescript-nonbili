@@ -15,7 +15,7 @@ spec :: Effect Unit
 spec = do
   test "padStart" $ do
     let re = unsafeRegex "^0+$" RegexFlags.noFlags
-    quickCheck \n s -> do
+    liftEffect $ quickCheck \n s -> do
       let
         lengthDiff = n - String.length s
         { before, after } = String.splitAt lengthDiff $ padStart n s

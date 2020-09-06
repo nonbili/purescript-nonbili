@@ -11,7 +11,7 @@ module Nonbili.DateTime
 import Nonbili.Prelude
 
 import Data.Argonaut.Core as A
-import Data.Argonaut.Decode (class DecodeJson)
+import Data.Argonaut.Decode (class DecodeJson, JsonDecodeError(..))
 import Data.Argonaut.Encode (class EncodeJson)
 import Data.JSDate (JSDate)
 import Data.JSDate as JSDate
@@ -23,7 +23,7 @@ derive instance ordDateTime :: Ord DateTime
 
 instance decodeJsonDateTime :: DecodeJson DateTime where
   decodeJson json =
-    note "Invalid date" $ (A.toString json >>= read)
+    note (UnexpectedValue json) $ (A.toString json >>= read)
 
 instance encodeJsonDateTime :: EncodeJson DateTime where
   encodeJson (DateTime date) =
