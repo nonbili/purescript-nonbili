@@ -1,7 +1,9 @@
 module Nonbili.DateTime
-  ( DateTime
+  ( DateTime(..)
+  , Milliseconds(..)
   , Date
   , Time
+  , now
   , getDate
   , getTime
   , getUTCDate
@@ -12,9 +14,10 @@ import Nonbili.Prelude
 
 import Data.Argonaut.Core as A
 import Data.Argonaut.Decode (class DecodeJson, JsonDecodeError(..))
-import Data.Argonaut.Encode (class EncodeJson)
+import Data.Argonaut.Encode (class EncodeJson, encodeJson)
 import Data.JSDate (JSDate)
 import Data.JSDate as JSDate
+import Data.Time.Duration as DT
 import Effect.Unsafe (unsafePerformEffect)
 
 newtype DateTime = DateTime JSDate
@@ -23,7 +26,8 @@ derive instance ordDateTime :: Ord DateTime
 
 instance decodeJsonDateTime :: DecodeJson DateTime where
   decodeJson json =
-    note (UnexpectedValue json) $ (A.toString json >>= read)
+    note (UnexpectedValue json)
+         (A.toString json >>= read)
 
 instance encodeJsonDateTime :: EncodeJson DateTime where
   encodeJson (DateTime date) =
@@ -40,6 +44,21 @@ read str =
   else Nothing
   where
   date = unsafePerformEffect $ JSDate.parse str
+
+now :: Effect DateTime
+now = DateTime <$> JSDate.now
+
+newtype Milliseconds = Milliseconds DT.Milliseconds
+derive instance eqMilliseconds :: Eq Milliseconds
+derive instance ordMilliseconds :: Ord Milliseconds
+
+instance decodeJsonMilliseconds :: DecodeJson Milliseconds where
+  decodeJson json =
+    note (UnexpectedValue json)
+         (Milliseconds <<< DT.Milliseconds <$> A.toNumber json)
+
+instance encodeJsonMilliseconds :: EncodeJson Milliseconds where
+  encodeJson (Milliseconds (DT.Milliseconds ms)) = encodeJson ms
 
 type Date =
   { year :: Number
